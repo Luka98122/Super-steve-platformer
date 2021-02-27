@@ -54,6 +54,7 @@ namespace Super_steve_platformer
 
         protected override void Initialize()
         {
+
             //TODO: Add your initialization logic here
             floor.initialize(-200, 220 , 1000, 300);
             //test.initialize(0, 120, 300, 20);
