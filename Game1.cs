@@ -18,6 +18,8 @@ namespace Super_steve_platformer
 
         public Platform floor = new Platform();
         public Platform test = new Platform();
+
+        Map map = new Map();
         
 
         private GraphicsDeviceManager _graphics;
@@ -60,6 +62,9 @@ namespace Super_steve_platformer
             //test.initialize(0, 120, 300, 20);
             ListOfPlatforms.Add(floor);
             ListOfPlatforms.Add(test);
+            map.initialize();
+            map.load("..//..//..//Level1.txt");
+            map.save("Map.txt");
 
             base.Initialize();
         }
