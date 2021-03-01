@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
@@ -7,9 +8,9 @@ using System.Threading;
 
 namespace Super_steve_platformer
 {
-    class Map
+    public class Map
     {
-        enum TileType
+        public enum TileType
         {
             Empty = 0,
             Platform = 1
@@ -18,7 +19,7 @@ namespace Super_steve_platformer
         int width = 250;
         int height = 30;
 
-        TileType [,]grid;
+        public TileType [,]grid;
 
         public void initialize()
         {
@@ -94,6 +95,20 @@ namespace Super_steve_platformer
                     streamReader.Read();
                 }
             }
+        }
+        public Vector2 pixelCoordsToMapCoords (Vector2 pixelCoords)
+        {
+            Vector2 v = new Vector2();
+            v.X = pixelCoords.X / 14;
+            v.Y = pixelCoords.Y / 14;
+            return v;
+        }
+        public Vector2 mapCoordsToPixelCoords (int x, int y)
+        {
+            Vector2 v = new Vector2();
+            v.X = x * 14;
+            v.Y = y * 14;
+            return v;
         }
     }
 }

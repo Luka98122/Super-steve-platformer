@@ -8,7 +8,8 @@ namespace Super_steve_platformer
     public class Game1 : Game
     {
         Texture2D knight;
-        Texture2D grassFloor;  
+        Texture2D grassFloor;
+        Texture2D spriteSheet;
 
         public static float playerX = 0;
         public static float playerY = 0;
@@ -19,8 +20,10 @@ namespace Super_steve_platformer
         public Platform floor = new Platform();
         public Platform test = new Platform();
 
-        Map map = new Map();
-        
+        public static Map map = new Map();
+        MapRenderer mapRenderer = new MapRenderer();
+
+        SpriteSheetBlockPicker spriteSheetBlockPicker = new SpriteSheetBlockPicker();
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -29,9 +32,8 @@ namespace Super_steve_platformer
         {
             for(int i = 0; i < ListOfPlatforms.Count; i++)
             {
-                if (playerY <= ListOfPlatforms[i].y && playerY > ListOfPlatforms[i].y-10)
+                if (playerY <= ListOfPlatforms[i].y && playerY > ListOfPlatforms[i].y-0.5)
                 {
-                    playerY = 50;
                     return true;
                 }
             }
@@ -61,10 +63,11 @@ namespace Super_steve_platformer
             floor.initialize(-200, 220 , 1000, 300);
             //test.initialize(0, 120, 300, 20);
             ListOfPlatforms.Add(floor);
-            ListOfPlatforms.Add(test);
+            //ListOfPlatforms.Add(test);
             map.initialize();
             map.load("..//..//..//Level1.txt");
             map.save("Map.txt");
+            mapRenderer.Initialize(Content);
 
             base.Initialize();
         }
@@ -88,6 +91,7 @@ namespace Super_steve_platformer
             // TODO: use this.Content to load your game content here
             knight = Content.Load<Texture2D>("KnightForPlatformerTake2");
             grassFloor = Content.Load<Texture2D>("Grass floor2");
+            spriteSheet = Content.Load<Texture2D>("Overworld");
         }
 
         protected override void Update(GameTime gameTime)
@@ -100,10 +104,16 @@ namespace Super_steve_platformer
             if (kState.IsKeyDown(Keys.Right) == true)
             {
                 playerX = playerX + 3;
+                if (mapRenderer.cameraX + 0.3f < 200)
+                {
+                    mapRenderer.cameraX = mapRenderer.cameraX + 0.3f;
+                }
             }
             if (kState.IsKeyDown(Keys.Left) == true)
             {
                 playerX = playerX - 3;
+                if(mapRenderer.cameraX - 0.3f > 0)
+                    mapRenderer.cameraX = mapRenderer.cameraX - 0.3f;
             }
             
             if (kState.IsKeyDown(Keys.Up))
@@ -112,8 +122,8 @@ namespace Super_steve_platformer
                 {
                     if (onPlatform() == true)
                     {
-                        playerDy = -10;
-                        
+                        playerDy = -15;
+                        playerY = playerY - 5;
                     }
                     
                 }
@@ -162,12 +172,11 @@ namespace Super_steve_platformer
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            for (int i = 0; i < 4; i++)
-            {
-                _spriteBatch.Draw(grassFloor, new Vector2(-1 + 200 * i, _graphics.PreferredBackBufferHeight - 200), Color.White);
-            }
+            
            
-            _spriteBatch.Draw(knight, new Vector2(playerX, playerY), Color.White);
+            //_spriteBatch.Draw(knight, new Vector2(playerX, playerY), Color.White);
+            mapRenderer.draw(map,_spriteBatch);
+            spriteSheetBlockPicker.draw(0, 0, spriteSheet, _spriteBatch,73,0);
 
             _spriteBatch.End();
             base.Draw(gameTime);
