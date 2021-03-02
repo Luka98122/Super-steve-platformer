@@ -16,10 +16,16 @@ namespace Super_steve_platformer
             Platform = 1
         };
 
-        int width = 250;
-        int height = 30;
+        public int width = 250;
+        public int height = 30;
+        public int tileSize = 16;
 
         public TileType [,]grid;
+
+        public Map()
+        {
+            System.Diagnostics.Debug.WriteLine("Map created");
+        }
 
         public void initialize()
         {
@@ -99,15 +105,15 @@ namespace Super_steve_platformer
         public Vector2 pixelCoordsToMapCoords (Vector2 pixelCoords)
         {
             Vector2 v = new Vector2();
-            v.X = pixelCoords.X / 14;
-            v.Y = pixelCoords.Y / 14;
+            v.X = pixelCoords.X / tileSize;
+            v.Y = pixelCoords.Y / tileSize;
             return v;
         }
         public Vector2 mapCoordsToPixelCoords (int x, int y)
         {
             Vector2 v = new Vector2();
-            v.X = x * 14;
-            v.Y = y * 14;
+            v.X = x * tileSize;
+            v.Y = y * tileSize;
             return v;
         }
     }

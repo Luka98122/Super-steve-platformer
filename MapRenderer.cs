@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+//using System.Drawing;
 using System.Net.Mime;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace Super_steve_platformer
     {
         public float cameraX = 5f;
         public float cameraY = 0f;
-        public float cameraWidth = 50f;
+        public float cameraWidth = 57f;
         public float cameraHeight = 30f;
 
         Texture2D platform;
@@ -20,6 +21,8 @@ namespace Super_steve_platformer
 
         {
             platform = content.Load<Texture2D>("FloatingPlatformTake2");
+            cameraWidth = Game1.game.graphics.PreferredBackBufferWidth/Game1.map.tileSize;
+            cameraHeight = Game1.game.graphics.PreferredBackBufferWidth / Game1.map.tileSize;
         }
 
         public void update()
@@ -29,10 +32,10 @@ namespace Super_steve_platformer
 
 
 
-        public void draw(Map map, SpriteBatch spriteBatch)
+        public void draw(Map map, SpriteBatch spriteBatch, SpriteSheetBlockPicker sheetBlockPicker, Texture2D spritesheet)
         {
             int drawX = 0;
-            for(float y = cameraY; y < cameraY+cameraHeight; y++)
+            for(float y = cameraY; y < cameraY+cameraHeight && y<map.height; y++)
             {
                 for(float x = cameraX;x < cameraX + cameraWidth; x++)
                 {
@@ -40,8 +43,9 @@ namespace Super_steve_platformer
                     {
                         
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
-                        v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
-                        spriteBatch.Draw(platform, v2, Color.White);
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 1);
                         
                     }
                     drawX++;

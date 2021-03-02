@@ -17,15 +17,18 @@ namespace Super_steve_platformer
         public static float playerDy = 0;
         List<Platform> ListOfPlatforms = new List<Platform>();
 
+        static public Game1 game;
+
         public Platform floor = new Platform();
         public Platform test = new Platform();
+        const int cameraEdge = 193; 
 
         public static Map map = new Map();
         MapRenderer mapRenderer = new MapRenderer();
 
-        SpriteSheetBlockPicker spriteSheetBlockPicker = new SpriteSheetBlockPicker();
+        public SpriteSheetBlockPicker spriteSheetBlockPicker = new SpriteSheetBlockPicker();
 
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager graphics;
         private SpriteBatch _spriteBatch;
 
         public bool onPlatform()
@@ -51,14 +54,14 @@ namespace Super_steve_platformer
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
-
+            Game1.game = this;
             //TODO: Add your initialization logic here
             floor.initialize(-200, 220 , 1000, 300);
             //test.initialize(0, 120, 300, 20);
@@ -68,7 +71,6 @@ namespace Super_steve_platformer
             map.load("..//..//..//Level1.txt");
             map.save("Map.txt");
             mapRenderer.Initialize(Content);
-
             base.Initialize();
         }
 
@@ -104,7 +106,7 @@ namespace Super_steve_platformer
             if (kState.IsKeyDown(Keys.Right) == true)
             {
                 playerX = playerX + 3;
-                if (mapRenderer.cameraX + 0.3f < 200)
+                if (mapRenderer.cameraX + 0.3f < cameraEdge)
                 {
                     mapRenderer.cameraX = mapRenderer.cameraX + 0.3f;
                 }
@@ -175,8 +177,8 @@ namespace Super_steve_platformer
             
            
             //_spriteBatch.Draw(knight, new Vector2(playerX, playerY), Color.White);
-            mapRenderer.draw(map,_spriteBatch);
-            spriteSheetBlockPicker.draw(0, 0, spriteSheet, _spriteBatch,73,0);
+            mapRenderer.draw(map,_spriteBatch, spriteSheetBlockPicker, spriteSheet);
+            //spriteSheetBlockPicker.draw(0, 0, spriteSheet, _spriteBatch,73,0);
 
             _spriteBatch.End();
             base.Draw(gameTime);

@@ -6,22 +6,22 @@ using System.Text;
 
 namespace Super_steve_platformer
 {
-    class SpriteSheetBlockPicker
+    public class SpriteSheetBlockPicker
     {
-        public void draw(int x, int y, Texture2D spriteSheet, SpriteBatch spriteBatch, int u, int v)
+        public void draw(Vector2 v2, Texture2D spriteSheet, SpriteBatch spriteBatch, int tileX, int tileY)
         {
-            Rectangle rect = new Rectangle();
-            rect.X = x*14;
-            rect.Y = x*14;
-            rect.Width = 14;
-            rect.Height = 14;
+            Rectangle rectLocation = new Rectangle();
+            rectLocation.X = Convert.ToInt32(v2.X)*Game1.map.tileSize;
+            rectLocation.Y = Convert.ToInt32(v2.Y)*Game1.map.tileSize;
+            rectLocation.Width = Game1.map.tileSize;
+            rectLocation.Height = Game1.map.tileSize;
 
-            Rectangle rect2 = new Rectangle();
-            rect2.X = u * 17;
-            rect2.Y = v * 17;
-            rect2.Width = 16;
-            rect2.Height = 16;
-            spriteBatch.Draw(spriteSheet, rect, rect2, Color.White);
+            Rectangle rectSource = new Rectangle();
+            rectSource.X = tileX * 17;
+            rectSource.Y = tileY * 17;
+            rectSource.Width = 16;
+            rectSource.Height = 16;
+            spriteBatch.Draw(spriteSheet, rectLocation, rectSource, Color.White);
         }
     }
 }
