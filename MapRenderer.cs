@@ -39,14 +39,94 @@ namespace Super_steve_platformer
             {
                 for(float x = cameraX;x < cameraX + cameraWidth; x++)
                 {
-                    if ( map.grid[Convert.ToInt32(x),Convert.ToInt32(y)] == Map.TileType.Platform)
+                    if ( map.grid[Convert.ToInt32(x),Convert.ToInt32(y)] == Map.TileType.Grass)
                     {
                         
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 1);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 0);
                         
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.Dirt)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 1);
+
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.LeftEdge)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 1);
+
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.RightEdge)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 1);
+
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.TopLeftEdge)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 0);
+
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.TopRightEdge)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 0);
+
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.BottomLeftEdge)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 2);
+
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.BottomRightEdge)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 2);
+
+                    }
+
+                    if (map.grid[Convert.ToInt32(x), Convert.ToInt32(y)] == Map.TileType.BottomMiddle)
+                    {
+
+                        Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
+                        //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
+                        //spriteBatch.Draw(platform, v2, Color.White);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 2);
+
                     }
                     drawX++;
                 }

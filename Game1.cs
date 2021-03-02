@@ -69,7 +69,7 @@ namespace Super_steve_platformer
             //ListOfPlatforms.Add(test);
             map.initialize();
             map.load("..//..//..//Level1.txt");
-            map.save("Map.txt");
+            //map.save("Map.txt");
             mapRenderer.Initialize(Content);
             base.Initialize();
         }
@@ -170,7 +170,7 @@ namespace Super_steve_platformer
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.LightCyan);
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();

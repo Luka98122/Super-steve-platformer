@@ -13,7 +13,15 @@ namespace Super_steve_platformer
         public enum TileType
         {
             Empty = 0,
-            Platform = 1
+            Grass = 1,
+            Dirt = 2,
+            LeftEdge = 3,
+            RightEdge = 4,
+            TopLeftEdge = 5,
+            TopRightEdge = 6,
+            BottomLeftEdge = 7,
+            BottomRightEdge = 8,
+            BottomMiddle = 9
         };
 
         public int width = 250;
@@ -42,13 +50,14 @@ namespace Super_steve_platformer
             {
                 for (int j = height-4; j < height; j++)
                 {
-                    grid[i, j ] = TileType.Platform;
+                    grid[i, j ] = TileType.Grass;
                 }
             }
 
         }
         public void save(string fileName)
         {
+            throw new Exception("Not updated to handle new tile types");
             using(StreamWriter writeText = new StreamWriter(fileName))
             {
                 for(int y = 0; y < height;y++)
@@ -60,10 +69,12 @@ namespace Super_steve_platformer
                         {
                             c = '.';
                         }
-                        else if (grid[x, y] == TileType.Platform)
+                        else if (grid[x, y] == TileType.Grass)
                         {
                             c = 'X';
-                        } else
+                        }
+                        
+                        else
                             throw new Exception("unknown tile type");
                         writeText.Write(c);
                     }
@@ -88,11 +99,36 @@ namespace Super_steve_platformer
                             case '.':
                                 o = TileType.Empty;
                                 break;
+                            case 'T':
+                                o = TileType.Grass;
+                                break;
                             case 'X':
-                                o = TileType.Platform;
+                                o = TileType.Dirt;
+                                break;
+                            case 'Q':
+                                o = TileType.LeftEdge;
+                                break;
+                            case 'E':
+                                o = TileType.RightEdge;
+                                break;
+                            case 'A':
+                                o = TileType.TopLeftEdge;
+                                break;
+                            case 'D':
+                                o = TileType.TopRightEdge;
+                                break;
+                            case 'Z':
+                                o = TileType.BottomLeftEdge;
+                                break;
+                            case 'C':
+                                o = TileType.BottomRightEdge;
+                                break;
+                            case 'O':
+                                o = TileType.BottomMiddle;
                                 break;
                             default:
                                 throw new Exception("Unkown character in file " + c);
+
                         }
 
                         grid[x, y] = o;
