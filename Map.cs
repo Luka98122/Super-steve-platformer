@@ -30,6 +30,19 @@ namespace Super_steve_platformer
 
         public TileType [,]grid;
 
+        public bool onPlatform(Vector2 v2)
+        {
+
+            v2.X = Convert.ToInt32(Game1.playerX);
+            v2.Y = Convert.ToInt32(Game1.playerY);
+            v2 = pixelCoordsToMapCoords(v2);
+            if (grid[Convert.ToInt32(v2.X), Convert.ToInt32(v2.Y) + 1] != Map.TileType.Empty)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public Map()
         {
             System.Diagnostics.Debug.WriteLine("Map created");

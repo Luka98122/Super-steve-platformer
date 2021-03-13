@@ -45,7 +45,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 0);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 0, map.tileSize);
                         
                     }
 
@@ -55,7 +55,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 1);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 1, map.tileSize);
 
                     }
 
@@ -65,7 +65,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 1);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 1, map.tileSize);
 
                     }
 
@@ -75,7 +75,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 1);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 1, map.tileSize);
 
                     }
 
@@ -85,7 +85,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 0);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 0, map.tileSize);
 
                     }
 
@@ -95,7 +95,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 0);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 0, map.tileSize);
 
                     }
 
@@ -105,7 +105,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 2);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 0, 2, map.tileSize);
 
                     }
 
@@ -115,7 +115,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 2);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 2, 2, map.tileSize);
 
                     }
 
@@ -125,7 +125,7 @@ namespace Super_steve_platformer
                         Vector2 v2 = new Vector2(drawX, Convert.ToInt32(y));
                         //v2 = map.mapCoordsToPixelCoords(drawX, Convert.ToInt32(y));
                         //spriteBatch.Draw(platform, v2, Color.White);
-                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 2);
+                        sheetBlockPicker.draw(v2, spritesheet, spriteBatch, 1, 2, map.tileSize);
 
                     }
                     drawX++;
