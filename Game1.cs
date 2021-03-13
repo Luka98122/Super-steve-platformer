@@ -13,7 +13,7 @@ namespace Super_steve_platformer
         Texture2D spriteSheet;
         Texture2D metroidSpriteSheet;
         public static float playerX = 0;
-        public static float playerY = 0;
+        public static float playerY = 20;
         public static float playerDdy = 1;
         public static float playerDy = 0;
         PlayerAnimator playerAnimator = new PlayerAnimator();
@@ -37,7 +37,7 @@ namespace Super_steve_platformer
             v2.X = Convert.ToInt32(playerX);
             v2.Y = Convert.ToInt32(playerY);
             v2 = map.pixelCoordsToMapCoords(v2);
-            if (map.grid [Convert.ToInt32(v2.X), Convert.ToInt32(v2.Y) + 1] != Map.TileType.Empty)
+            if (map.grid [Convert.ToInt32(v2.X), Convert.ToInt32(v2.Y) ] != Map.TileType.Empty)
             {
                 return true;
             }
@@ -48,8 +48,8 @@ namespace Super_steve_platformer
         {
             if(playerX > platformX && playerX < platformX + platformWidth && playerY > platformY && playerY < platformY + platformHeight)
             {
-                playerY = platformY;
-                playerDy = 0;
+                //playerY = platformY;
+                //playerDy = 0;
             }
         }
 
@@ -88,7 +88,7 @@ namespace Super_steve_platformer
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            knight = Content.Load<Texture2D>("KnightForPlatformerTake2");
+            knight = Content.Load<Texture2D>("KnightForPlatformerTake3");
             grassFloor = Content.Load<Texture2D>("Grass floor2");
             spriteSheet = Content.Load<Texture2D>("Overworld");
             //metroidSpriteSheet = Content.Load<Texture2D>("Metroid SpriteSheet");
@@ -105,7 +105,7 @@ namespace Super_steve_platformer
             if (kState.IsKeyDown(Keys.Right) == true)
             {
                 ;
-                if (mapRenderer.cameraX + 0.3f < cameraEdge)
+                if (mapRenderer.cameraX + 0.3f < cameraEdge )
                 {
                     mapRenderer.cameraX = mapRenderer.cameraX + 0.3f;
                 }
@@ -118,10 +118,47 @@ namespace Super_steve_platformer
             }
             
             
-            if (kState.IsKeyDown(Keys.Down) == true && playerY + 3 < 253)
+            if (kState.IsKeyDown(Keys.Down) == true)
             {
                 playerY = playerY + 3;
             }
+
+            if (kState.IsKeyDown(Keys.Up) == true)
+            {
+                playerY = playerY - 3;
+            }
+            int platformDetected = 0;
+            if(onPlatform() != true)
+            {
+                playerDy = playerDy + playerDdy;
+                for(int i = 0;i< Convert.ToInt32(playerDy/16);i++)
+                {
+                    if(Convert.ToInt32(playerY/map.tileSize + i) == 29)
+                    {
+                        platformDetected = 1;
+                        break;
+                    }
+                    if(map.grid[Convert.ToInt32(playerX/map.tileSize), Convert.ToInt32(playerY/map.tileSize + i)] != Map.TileType.Empty)
+                    {
+                        platformDetected = 1;
+                    }
+                }
+                if (platformDetected == 0)
+                {
+                    playerY = playerY + playerDy;
+                }
+            }
+
+            if (onPlatform() == true)
+            {
+                playerDy = 0;
+                if (kState.IsKeyDown(Keys.Up) == true)
+                {
+                    playerDy = -10;
+                }
+                
+            }
+            
 
             base.Update(gameTime);
         }
